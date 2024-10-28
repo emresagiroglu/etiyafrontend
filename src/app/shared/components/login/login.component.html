@@ -1,0 +1,49 @@
+<div class="w-full my-6 sm:flex justify-between">
+    <div
+      class="w-full flex flex-col justify-center items-center sm:w-1/2 p-6 bg-gradient-to-t from-gray-200 to-white"
+    >
+      <p class="text-black font-semibold text-2xl">
+        Sign in with your organizational account
+      </p>
+      <form class="my-4">
+        <div>
+          <app-input
+          type="text"
+            label="Username"
+            placeholder="Enter your Username"
+          ></app-input>
+          <app-input
+            type="password"
+            label="Password"
+            placeholder="Enter your Password"
+          ></app-input>
+        </div>
+        <div class="sm:ml-12">
+          <app-button
+            [label]="'Login'"
+            [type]="'primary'"
+            [width]="'150px'"
+            [isDisabled]="false"
+            (onClick)="handleButtonClick()"
+          ></app-button>
+        </div>
+        <div class="flex gap-4 mt-6">
+          <div class="flex gap-2">
+            <input
+              id="default-checkbox"
+              type="checkbox"
+              value=""
+              class="w-4 h-4 mt-1 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <p class="">Remember me</p>
+          </div>
+          <div>
+            <a class="underline" href="Forgot Password">Forgot Password</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="w-full sm:w-1/2">
+      <img src="https://imgur.com/a/hm8YYP1" alt="Login Logo" />
+    </div>
+  </div>
