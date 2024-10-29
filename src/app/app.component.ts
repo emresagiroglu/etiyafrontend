@@ -6,6 +6,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { CustomerSearchComponent } from './shared/components/customer-search/customer-search.component';
 import { TabsComponent } from './shared/components/tabs/tabs.component';
 import { PopupComponent } from './shared/components/popup/popup.component';
+import { CustomerCreateComponent } from './shared/components/customer-create/customer-create.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,6 +17,7 @@ import { PopupComponent } from './shared/components/popup/popup.component';
     CustomerSearchComponent,
     TabsComponent,
     PopupComponent,
+    CustomerCreateComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
