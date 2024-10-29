@@ -3,10 +3,35 @@
     <p class="text-xl font-medium mb-4">Create Customer</p>
     <div class="border-2 border-black p-6 sm:pb-12 w-full h-full">
       <p class="text-xl font-medium mb-4">Address Info</p>
-      <div
-        class="border-2 border-black p-6 flex justify-center items-center gap-6"
-      >
-        <p class="text-xl font-medium">There is no address</p>
+      <div class="border-2 border-black p-3">
+        <div
+          class="bg-gray-200 rounded-md h-64 p-6 flex justify-center items-center gap-6"
+        >
+          <p *ngIf="addresses.length === 0" class="text-xl font-medium">
+            There is no address
+          </p>
+          <div class="bg-white h-auto rounded-full flex justify-center">
+            <div
+              *ngFor="let address of addresses"
+              class="text-xl font-medium p-6"
+            >
+              <div class="flex gap-6">
+                <div class="bg-gray-500 rounded-full p-1">
+                  <app-radio-button
+                    [options]="options"
+                    [(selectedOption)]="selectedOption"
+                  >
+                  </app-radio-button>
+                </div>
+                <div class="mt-1">
+                  {{ address.neighborhood }}, {{ address.street }} ,
+                  {{ address.houseFlat }}, {{ address.district }},
+                  {{ address.city }}, ({{ address.description }})
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="sm:flex justify-evenly mt-4">
         <div class="sm:flex sm:gap-8 justify-between">
@@ -21,7 +46,7 @@
             [label]="'Add'"
             [type]="'primary'"
             [width]="'150px'"
-            (onClick)="openModal()"
+            (click)="openModal()"
           ></app-button>
         </div>
         <div class="sm:flex gap-4">
@@ -30,14 +55,14 @@
             [type]="'primary'"
             [width]="'150px'"
             [isDisabled]="false"
-            (onClick)="handleButtonClick()"
+            (click)="handleButtonClick()"
           ></app-button>
           <app-button
             [label]="'Next'"
             [type]="'primary'"
             [width]="'150px'"
             [isDisabled]="false"
-            (onClick)="handleButtonClick()"
+            (click)="handleButtonClick()"
           ></app-button>
         </div>
       </div>
@@ -52,7 +77,6 @@
   [title]="''"
   (onClose)="closeModal()"
 >
-  <div icon></div>
   <div content>
     <form>
       <div class="grid gap-6 md:grid-cols-2 p-6">
@@ -63,76 +87,83 @@
           <input
             type="text"
             id="city"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-            placeholder=""
+            name="city"
+            [(ngModel)]="newAddress.city"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5"
             required
           />
         </div>
         <div>
-          <label for="Street*" class="block mb-2 text-sm font-medium text-white"
+          <label
+            for="district"
+            class="block mb-2 text-sm font-medium text-white"
             >District *</label
           >
           <input
             type="text"
-            id="street*"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-            placeholder=""
+            id="district"
+            name="district"
+            [(ngModel)]="newAddress.district"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5"
+            required
+          />
+        </div>
+        <div>
+          <label for="street" class="block mb-2 text-sm font-medium text-white"
+            >Street *</label
+          >
+          <input
+            type="text"
+            id="street"
+            name="street"
+            [(ngModel)]="newAddress.street"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5"
             required
           />
         </div>
         <div>
           <label
-            for="first_name"
+            for="houseFlat"
             class="block mb-2 text-sm font-medium text-white"
-            >Street*</label
+            >House / Flat *</label
           >
           <input
             type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-            placeholder=""
+            id="houseFlat"
+            name="houseFlat"
+            [(ngModel)]="newAddress.houseFlat"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5"
             required
           />
         </div>
         <div>
           <label
-            for="first_name"
+            for="neighborhood"
             class="block mb-2 text-sm font-medium text-white"
-          >
-            House / Flat*</label
+            >Neighborhood *</label
           >
           <input
             type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-            placeholder=""
-            required
-          />
-        </div>
-        <div>
-          <label
-            for="first_name"
-            class="block mb-2 text-sm font-medium text-white"
-            >Neighborhood*</label
-          >
-          <input
-            type="text"
-            id="first_name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-            placeholder=""
+            id="neighborhood"
+            name="neighborhood"
+            [(ngModel)]="newAddress.neighborhood"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5"
             required
           />
         </div>
       </div>
       <div class="p-6">
-        <label for="visitors" class="block mb-2 text-sm font-medium text-white"
-          >Address Description*</label
+        <label
+          for="description"
+          class="block mb-2 text-sm font-medium text-white"
+          >Address Description *</label
         >
         <input
-          type="string"
-          id="visitors"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder=""
+          type="text"
+          id="description"
+          name="description"
+          [(ngModel)]="newAddress.description"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
           required
         />
       </div>
@@ -148,7 +179,7 @@
           [label]="'Save'"
           [type]="'primary'"
           [width]="'150px'"
-          (onClick)="handleButtonClick()"
+          (click)="saveAddress()"
         ></app-button>
       </div>
     </form>
