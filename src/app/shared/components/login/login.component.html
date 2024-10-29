@@ -1,22 +1,33 @@
-<div class="w-full my-6 sm:flex justify-between">
+<div class="w-full sm:flex justify-between">
   <div
     class="w-full flex flex-col justify-center items-center sm:w-1/2 p-6 bg-gradient-to-t from-gray-200 to-white"
   >
     <p class="text-black font-semibold text-2xl">
       Sign in with your organizational account
     </p>
-    <form class="my-4">
+    <form [formGroup]="form" (submit)="submitForm()">
       <div>
-        <app-input
-          type="text"
-          label="Username"
-          placeholder="---------------"
-        ></app-input>
-        <app-input
-          type="password"
-          label="Password"
-          placeholder="Enter your Password"
-        ></app-input>
+
+        <label for="floatingInput">Email address</label>
+        <input
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+        formControlName="email"
+        class="w-full py-2 px-4 text-gray-700 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+       />
+       
+        <label for="floatingInput">Password</label>
+        <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+        formControlName="password"
+        class="w-full py-2 px-4 text-gray-700 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+     
       </div>
       <div class="sm:ml-12">
         <app-button
@@ -24,7 +35,7 @@
           [type]="'primary'"
           [width]="'150px'"
           [isDisabled]="false"
-          (onClick)="handleButtonClick()"
+          (onClick)="submitForm()"
         ></app-button>
       </div>
       <div class="flex gap-4 mt-6">
