@@ -1,0 +1,156 @@
+<main class="overflow-hidden">
+  <div class="p-6 w-full h-full flex flex-col">
+    <p class="text-xl font-medium mb-4">Create Customer</p>
+    <div class="border-2 border-black p-6 sm:pb-12 w-full h-full">
+      <p class="text-xl font-medium mb-4">Address Info</p>
+      <div
+        class="border-2 border-black p-6 flex justify-center items-center gap-6"
+      >
+        <p class="text-xl font-medium">There is no address</p>
+      </div>
+      <div class="sm:flex justify-evenly mt-4">
+        <div class="sm:flex sm:gap-8 justify-between">
+          <app-button
+            [label]="'Exit'"
+            [type]="'primary'"
+            [width]="'150px'"
+            [isDisabled]="false"
+            (click)="handleButtonClick()"
+          ></app-button>
+          <app-button
+            [label]="'Add'"
+            [type]="'primary'"
+            [width]="'150px'"
+            (onClick)="openModal()"
+          ></app-button>
+        </div>
+        <div class="sm:flex gap-4">
+          <app-button
+            [label]="'Previous'"
+            [type]="'primary'"
+            [width]="'150px'"
+            [isDisabled]="false"
+            (onClick)="handleButtonClick()"
+          ></app-button>
+          <app-button
+            [label]="'Next'"
+            [type]="'primary'"
+            [width]="'150px'"
+            [isDisabled]="false"
+            (onClick)="handleButtonClick()"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-popup
+  *ngIf="showModal"
+  [modalWidth]="'800px'"
+  [modalHeight]="'550px'"
+  [title]="''"
+  (onClose)="closeModal()"
+>
+  <div icon></div>
+  <div content>
+    <form>
+      <div class="grid gap-6 md:grid-cols-2 p-6">
+        <div>
+          <label for="city" class="block mb-2 text-sm font-medium text-white"
+            >City *</label
+          >
+          <input
+            type="text"
+            id="city"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder=""
+            required
+          />
+        </div>
+        <div>
+          <label for="Street*" class="block mb-2 text-sm font-medium text-white"
+            >District *</label
+          >
+          <input
+            type="text"
+            id="street*"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder=""
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="first_name"
+            class="block mb-2 text-sm font-medium text-white"
+            >Street*</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder=""
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="first_name"
+            class="block mb-2 text-sm font-medium text-white"
+          >
+            House / Flat*</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder=""
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="first_name"
+            class="block mb-2 text-sm font-medium text-white"
+            >Neighborhood*</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder=""
+            required
+          />
+        </div>
+      </div>
+      <div class="p-6">
+        <label for="visitors" class="block mb-2 text-sm font-medium text-white"
+          >Address Description*</label
+        >
+        <input
+          type="string"
+          id="visitors"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder=""
+          required
+        />
+      </div>
+      <div class="sm:flex sm:gap-8 justify-around">
+        <app-button
+          [label]="'Cancel'"
+          [type]="'primary'"
+          [width]="'150px'"
+          [isDisabled]="false"
+          (click)="closeModal()"
+        ></app-button>
+        <app-button
+          [label]="'Save'"
+          [type]="'primary'"
+          [width]="'150px'"
+          (onClick)="handleButtonClick()"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</app-popup>

@@ -7,6 +7,7 @@ import { CustomerSearchComponent } from './shared/components/customer-search/cus
 import { TabsComponent } from './shared/components/tabs/tabs.component';
 import { PopupComponent } from './shared/components/popup/popup.component';
 import { CustomerCreateComponent } from './shared/components/customer-create/customer-create.component';
+import { AddressInfoComponent } from './shared/components/address-info/address-info.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,6 +19,7 @@ import { CustomerCreateComponent } from './shared/components/customer-create/cus
     TabsComponent,
     PopupComponent,
     CustomerCreateComponent,
+    AddressInfoComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
