@@ -26,16 +26,16 @@
       <tbody>
         <tr *ngFor="let customer of customers">
           <td class="px-4 py-2 border border-gray-300">
-            {{ customer.natIdNumber }}
+            {{ customer.nationalityId }}
           </td>
           <td class="px-4 py-2 border border-gray-300">
-            {{ customer.customerId }}
+            {{ customer.id }}
           </td>
           <td class="px-4 py-2 border border-gray-300">
             {{ customer.accountNumber }}
           </td>
           <td class="px-4 py-2 border border-gray-300">
-            {{ customer.gsmNumber }}
+            {{ customer.mobilePhone }}
           </td>
           <td class="px-4 py-2 border border-gray-300">
             {{ customer.firstName }}
@@ -47,7 +47,7 @@
             {{ customer.lastName }}
           </td>
           <td class="px-4 py-2 border border-gray-300">
-            {{ customer.orderNumber }}
+            customer order number response ta dönülmüyor!
           </td>
         </tr>
       </tbody>
