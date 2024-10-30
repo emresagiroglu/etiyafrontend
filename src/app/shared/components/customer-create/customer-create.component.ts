@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button/radio-button.component';
 import { ButtonComponent } from '../button/button.component';
 import { PopupComponent } from '../popup/popup.component';
@@ -11,6 +17,7 @@ import { PopupComponent } from '../popup/popup.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RadioButtonComponent,
     ButtonComponent,
     PopupComponent,
@@ -19,21 +26,42 @@ import { PopupComponent } from '../popup/popup.component';
   styleUrl: './customer-create.component.scss',
 })
 export class CustomerCreateComponent {
+  customerForm: FormGroup; // Reactive Form için FormGroup
   selectedGender: string = ''; // Gender dropdown için bir state
+  selectedOption: string = 'all'; // Varsayılan olarak tüm inputlar açık
 
   handleGenderChange(event: any) {
     this.selectedGender = event.target.value;
     console.log(`Selected gender: ${this.selectedGender}`);
   }
 
-  selectedOption: string = 'all'; // Varsayılan olarak tüm inputlar açık
+  constructor(private fb: FormBuilder) {
+    this.customerForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      middleName: [''],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
+      birthDate: ['', Validators.required],
+      gender: ['', Validators.required],
+      fatherName: ['', [Validators.required, Validators.minLength(3)]],
+      motherName: ['', [Validators.required, Validators.minLength(3)]],
+      nationalityId: ['', [Validators.required, Validators.minLength(11)]],
+    });
+  }
 
   options = [
     { label: 'Turkish', value: 'all' },
     { label: 'Other', value: 'hide' },
   ];
 
-  handleButtonClick() {}
+  handleButtonClick() {
+    if (this.customerForm.invalid) {
+      // Form geçersiz ise uyarı verelim
+      this.customerForm.markAllAsTouched(); // Tüm alanları dokunulmuş (touched) olarak işaretliyoruz
+      alert('Please fill out all required fields correctly.');
+      return;
+    }
+    console.log('Form Submitted:', this.customerForm.value);
+  }
 
   showModal: boolean = false;
 
