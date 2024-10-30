@@ -8,6 +8,8 @@ import { TabsComponent } from './shared/components/tabs/tabs.component';
 import { PopupComponent } from './shared/components/popup/popup.component';
 import { CustomerCreateComponent } from './shared/components/customer-create/customer-create.component';
 import { AddressInfoComponent } from './shared/components/address-info/address-info.component';
+import { CustomerAccountComponent } from './shared/components/customer-account/customer-account.component';
+import { AccountTableComponent } from './shared/components/account-table/account-table.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,6 +22,8 @@ import { AddressInfoComponent } from './shared/components/address-info/address-i
     PopupComponent,
     CustomerCreateComponent,
     AddressInfoComponent,
+    CustomerAccountComponent,
+    AccountTableComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
