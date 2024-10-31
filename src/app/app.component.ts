@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { initFlowbite } from 'flowbite';
@@ -16,6 +18,7 @@ import { SaleSelectionComponent } from './shared/components/sale-selection/sale-
   standalone: true,
   imports: [
     RouterOutlet,
+    CommonModule,
     HeaderComponent,
     LoginComponent,
     CustomerSearchComponent,
@@ -32,7 +35,18 @@ import { SaleSelectionComponent } from './shared/components/sale-selection/sale-
 })
 export class AppComponent implements OnInit {
   title = 'etiyafrontend';
+  isLoginPage: boolean = false; // Login sayfasını kontrol etmek için değişken
+
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     initFlowbite();
+
+    // Router'ı dinleyerek sayfanın adını kontrol edin
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginPage = event.url === '/login'; // URL'ye göre kontrol et
+      }
+    });
   }
 }
