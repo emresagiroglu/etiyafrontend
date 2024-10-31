@@ -6,7 +6,9 @@ import { LoginPageComponent } from './shared/pages/login-page/login-page.compone
 import { CustomerCreateComponent } from './shared/components/customer-create/customer-create.component';
 import { AddressInfoComponent } from './shared/components/address-info/address-info.component';
 import { CustomerAccountComponent } from './shared/components/customer-account/customer-account.component';
+import { SaleSelectionComponent } from './shared/components/sale-selection/sale-selection.component';
 import { CustomerUpdateComponent } from './shared/components/customer-update/customer-update.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -15,6 +17,7 @@ export const routes: Routes = [
   { path: 'customer-create', component: CustomerCreateComponent },
   { path: 'customer-account', component: CustomerAccountComponent },
   { path: 'address-info', component: AddressInfoComponent },
+  { path: 'sale-selection', component: SaleSelectionComponent },
   { path: 'customer-update', component: CustomerUpdateComponent },
 ];
 
