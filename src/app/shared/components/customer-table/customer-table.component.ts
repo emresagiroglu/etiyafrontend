@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Customer } from '../../models/Customer';
 import { CommonModule } from '@angular/common';
+import { CustomerSearchService } from '../../services/customer-search.service';
+import { CustomerListResponse } from '../../models/customer/customerListResponse';
+
 
 @Component({
   selector: 'app-customer-table',
@@ -9,43 +12,25 @@ import { CommonModule } from '@angular/common';
   templateUrl: './customer-table.component.html',
   styleUrl: './customer-table.component.scss',
 })
-export class CustomerTableComponent {
-  customers: Customer[] = [
-    {
-      natIdNumber: '232323',
-      customerId: '3232323',
-      accountNumber: '3243243',
-      gsmNumber: '21321',
-      firstName: 'mdskfdkf',
-      lastName: 'kdmfkdmf',
-      orderNumber: 'kdmfkdf',
-    },
-    {
-      natIdNumber: '232323',
-      customerId: '3232323',
-      accountNumber: '3243243',
-      gsmNumber: '21321',
-      firstName: 'mdskfdkf',
-      lastName: 'kdmfkdmf',
-      orderNumber: 'kdmfkdf',
-    },
-    {
-      natIdNumber: '232323',
-      customerId: '3232323',
-      accountNumber: '3243243',
-      gsmNumber: '21321',
-      firstName: 'mdskfdkf',
-      lastName: 'kdmfkdmf',
-      orderNumber: 'kdmfkdf',
-    },
-    {
-      natIdNumber: '232323',
-      customerId: '3232323',
-      accountNumber: '3243243',
-      gsmNumber: '21321',
-      firstName: 'mdskfdkf',
-      lastName: 'kdmfkdmf',
-      orderNumber: 'kdmfkdf',
-    },
-  ];
+export class CustomerTableComponent implements OnInit{
+
+  customers !: CustomerListResponse[];
+
+  constructor(private customerService: CustomerSearchService, private change: ChangeDetectorRef){}
+
+
+  ngOnInit(): void {
+    this.getCustomerList();
+  }
+
+
+  getCustomerList(){
+    this.customerService.getCustomers().subscribe((response)=>{
+      this.customers = response;
+
+      this.change.markForCheck()
+    })
+  }
+
+
 }
