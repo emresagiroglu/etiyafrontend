@@ -10,6 +10,7 @@ import { CustomerCreateComponent } from './shared/components/customer-create/cus
 import { AddressInfoComponent } from './shared/components/address-info/address-info.component';
 import { CustomerAccountComponent } from './shared/components/customer-account/customer-account.component';
 import { AccountTableComponent } from './shared/components/account-table/account-table.component';
+import { SaleSelectionComponent } from './shared/components/sale-selection/sale-selection.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -24,6 +25,7 @@ import { AccountTableComponent } from './shared/components/account-table/account
     AddressInfoComponent,
     CustomerAccountComponent,
     AccountTableComponent,
+    SaleSelectionComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
