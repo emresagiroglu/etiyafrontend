@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { InputComponent } from '../input/input.component';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
@@ -12,19 +19,19 @@ import { TokenResponse } from '../../models/auth/tokenResponse';
   standalone: true,
   imports: [ButtonComponent, InputComponent, ReactiveFormsModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
+  passwordVisible: boolean = false;
 
-  form !: FormGroup
+  form!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router
-  ){}
-
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -40,7 +47,10 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible; // Parola görünürlüğünü değiştir
+  }
+
   submitForm() {
     this.form.markAllAsTouched();
     if (!this.form.valid) {
@@ -54,5 +64,4 @@ export class LoginComponent implements OnInit{
       },
     });
   }
-
 }
