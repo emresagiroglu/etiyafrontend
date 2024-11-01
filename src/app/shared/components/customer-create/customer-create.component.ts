@@ -27,23 +27,21 @@ import { PopupComponent } from '../popup/popup.component';
 })
 export class CustomerCreateComponent {
   customerForm: FormGroup; // Reactive Form için FormGroup
-  selectedGender: string = ''; // Gender dropdown için bir state
   selectedOption: string = 'all'; // Varsayılan olarak tüm inputlar açık
-
-  handleGenderChange(event: any) {
-    this.selectedGender = event.target.value;
-    console.log(`Selected gender: ${this.selectedGender}`);
-  }
+  maxDate: string; // Maksimum seçilebilir tarih
 
   constructor(private fb: FormBuilder) {
+    const today = new Date();
+    this.maxDate = today.toISOString().split('T')[0];
+
     this.customerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
       middleName: [''],
-      lastName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       birthDate: ['', Validators.required],
       gender: ['', Validators.required],
-      fatherName: ['', [Validators.required, Validators.minLength(3)]],
-      motherName: ['', [Validators.required, Validators.minLength(3)]],
+      fatherName: [''],
+      motherName: [''],
       nationalityId: ['', [Validators.required, Validators.minLength(11)]],
     });
   }
@@ -55,8 +53,7 @@ export class CustomerCreateComponent {
 
   handleButtonClick() {
     if (this.customerForm.invalid) {
-      // Form geçersiz ise uyarı verelim
-      this.customerForm.markAllAsTouched(); // Tüm alanları dokunulmuş (touched) olarak işaretliyoruz
+      this.customerForm.markAllAsTouched();
       alert('Please fill out all required fields correctly.');
       return;
     }
