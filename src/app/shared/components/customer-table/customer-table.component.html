@@ -18,38 +18,63 @@
             Middle Name
           </th>
           <th class="text-left px-4 py-2 border border-gray-300">Last Name</th>
-          <th class="text-left px-4 py-2 border border-gray-300">
-            Order Number
-          </th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let customer of customers">
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.nationalityId }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.id }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.accountNumber }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.mobilePhone }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.firstName }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.middleName || "-" }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            {{ customer.lastName }}
-          </td>
-          <td class="px-4 py-2 border border-gray-300">
-            customer order number response ta dönülmüyor!
-          </td>
-        </tr>
+    <tbody>
+        @if(!searchResulDatas){
+          @for(customer of customers; track customer){
+            <tr>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.nationalityId }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.id }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.accountNumber }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.mobilePhone }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.firstName }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.middleName || "-" }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ customer.lastName }}
+              </td>
+            </tr>
+          }
+        }@else{
+          @for(searchResultData of searchResulDatas; track searchResultData){
+            <tr>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.nationalityId }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.id }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.accountNumber }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.mobilePhone }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.firstName }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.middleName || "-" }}
+              </td>
+              <td class="px-4 py-2 border border-gray-300">
+                {{ searchResultData.lastName }}
+              </td>
+            </tr>
+          }
+        }
+
       </tbody>
     </table>
   </div>

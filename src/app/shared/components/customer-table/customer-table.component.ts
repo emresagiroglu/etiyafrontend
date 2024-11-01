@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Customer } from '../../models/Customer';
 import { CommonModule } from '@angular/common';
 import { CustomerSearchService } from '../../services/customer-search.service';
 import { CustomerListResponse } from '../../models/customer/customerListResponse';
+import { CustomerSearchResponse } from '../../models/customer/customerSearchResponse';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { CustomerListResponse } from '../../models/customer/customerListResponse
 export class CustomerTableComponent implements OnInit{
 
   customers !: CustomerListResponse[];
+  @Input() searchResulDatas! : CustomerSearchResponse[];
+
 
   constructor(private customerService: CustomerSearchService, private change: ChangeDetectorRef){}
 
@@ -27,7 +30,6 @@ export class CustomerTableComponent implements OnInit{
   getCustomerList(){
     this.customerService.getCustomers().subscribe((response)=>{
       this.customers = response;
-
       this.change.markForCheck()
     })
   }
