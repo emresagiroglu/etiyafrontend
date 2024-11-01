@@ -13,6 +13,8 @@ export class CustomerSearchService {
   constructor(private httpClient: HttpClient) { }
 
   private readonly controllerUrl= 'http://localhost:8085/api/search'  //sonradan apigateway e bağlanacak!
+  //private readonly controllerUrl= 'http://localhost:8090/api/search'  //sonradan apigateway e bağlanacak!
+  
 
   getCustomers(): Observable<CustomerListResponse[]>{
     const url = `${this.controllerUrl}/getAll`; 
