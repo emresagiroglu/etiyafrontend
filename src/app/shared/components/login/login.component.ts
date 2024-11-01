@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit{
       ]),
     });
   }
-//form gönderilemiyo bak!!!
+
+  
   submitForm() {
     this.form.markAllAsTouched();
     if (!this.form.valid) {
