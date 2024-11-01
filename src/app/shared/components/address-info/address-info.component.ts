@@ -21,6 +21,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AddressInfoComponent {
   showModal: boolean = false;
+  showExitPopup: boolean = false;
   addresses: any[] = []; // Adresleri saklamak için dizi
   newAddress = {
     neighborhood: '',
@@ -31,14 +32,18 @@ export class AddressInfoComponent {
     description: '',
   }; // Yeni adres form verisi
 
-  handleButtonClick() {}
+  handleButtonClick() {
+    this.showExitPopup = true;
+  }
 
   openModal() {
     this.showModal = true;
+ 
   }
 
   closeModal() {
     this.showModal = false;
+    this.showExitPopup = false;
   }
 
   saveAddress() {
