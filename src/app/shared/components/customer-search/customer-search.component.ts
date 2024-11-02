@@ -47,6 +47,7 @@ export class CustomerSearchComponent implements OnInit{
 
   ngOnInit(): void {
     this.buildForm();
+    this.submitForm();
   }
 
   buildForm(){

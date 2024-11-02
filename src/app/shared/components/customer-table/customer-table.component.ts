@@ -25,7 +25,7 @@ export class CustomerTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCustomerList();
+   
   }
 
   customerIdOnClick(customerId: string) {
@@ -33,10 +33,5 @@ export class CustomerTableComponent implements OnInit {
     this.router.navigate(['/customer-info', customerId]);
   }
 
-  getCustomerList() {
-    this.customerService.getCustomers().subscribe((response) => {
-      this.customers = response;
-      this.change.markForCheck();
-    });
-  }
+
 }
