@@ -47,6 +47,7 @@ export class CustomerSearchComponent implements OnInit{
 
   ngOnInit(): void {
     this.buildForm();
+    this.submitForm();
   }
 
   buildForm(){
@@ -63,6 +64,15 @@ export class CustomerSearchComponent implements OnInit{
       sortOrder: ['']
     });
   }
+
+  setSort(field: string, order: 'asc' | 'desc') {
+    this.searchForm.patchValue({
+        sortField: field,
+        sortOrder: order
+    });
+    this.submitForm();
+}
+
 
   submitForm(){
     this.searchForm.markAllAsTouched();
