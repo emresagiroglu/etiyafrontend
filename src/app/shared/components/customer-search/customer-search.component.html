@@ -29,14 +29,23 @@
               <label for="floatingInput" class="font-bold text-md text-white">First Name</label>
               <input type="text" class="form-control" id="floatingInput" placeholder=" " formControlName="firstName"
                 class="w-full py-2 px-4 mb-3 text-gray-700 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
-
+                <div *ngIf="searchForm.get('firstName')?.hasError('onlyText') && searchForm.get('firstName')?.touched" class="px-2 my-0 text-red-600 font-bold">
+                  Only text values!
+                </div>
               <label for="floatingInput" class="font-bold text-md text-white">Middle Name</label>
               <input type="text" class="form-control" id="floatingInput" placeholder=" " formControlName="middleName"
                 class="w-full py-2 px-4 mb-3 text-gray-700 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              <div *ngIf="searchForm.get('middleName')?.hasError('onlyText') && searchForm.get('middleName')?.touched" class="px-2 my-0 text-red-600 font-bold">
+                  Only text values!
+              </div> 
 
               <label for="floatingInput" class="font-bold text-md text-white">Last Name</label>
               <input type="text" class="form-control" id="floatingInput" placeholder=" " formControlName="lastName"
                 class="w-full py-2 px-4 mb-3 text-gray-700 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              <div *ngIf="searchForm.get('lastName')?.hasError('onlyText') && searchForm.get('lastName')?.touched" class="px-2 my-0 text-red-600 font-bold">
+                Only text values!
+              </div>
+              
               <div class="flex justify-around gap-5 my-7">
                 <app-button [label]="'Cancel'" [type]="'primary'" [width]="'150px'" [isDisabled]="false"
                   (onClick)="handleButtonClick()"></app-button>
