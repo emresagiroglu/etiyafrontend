@@ -64,6 +64,15 @@ export class CustomerSearchComponent implements OnInit{
     });
   }
 
+  setSort(field: string, order: 'asc' | 'desc') {
+    this.searchForm.patchValue({
+        sortField: field,
+        sortOrder: order
+    });
+    this.submitForm();
+}
+
+
   submitForm(){
     this.searchForm.markAllAsTouched();
     if (!this.searchForm.valid) {

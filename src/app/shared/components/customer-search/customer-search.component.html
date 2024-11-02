@@ -73,30 +73,38 @@
               <div>
                 <app-customer-table [searchResulDatas] = "searchResulDatas"></app-customer-table>
               </div>
-
+                            <!-- Dropdown menu -->
               <!-- Dropdown menu -->
-              <div id="dropdownHover"
-                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
                   <li>
-                    <a href="#"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('id', 'asc')">Ascending Customer ID</button>
                   </li>
                   <li>
-                    <a href="#"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('id', 'desc')">Descending Customer ID</button>
                   </li>
                   <li>
-                    <a href="#"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('firstName', 'asc')">Ascending First Name</button>
                   </li>
                   <li>
-                    <a href="#"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                      out</a>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('firstName', 'desc')">Descending First Name</button>
+                  </li>
+                  <li>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('lastName', 'asc')">Ascending Last Name</button>
+                  </li>
+                  <li>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('lastName', 'desc')">Descending Last Name</button>
+                  </li>
+                  <li>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('nationalityId', 'asc')">Ascending ID Number</button>
+                  </li>
+                  <li>
+                    <button type="button" class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white whitespace-nowrap" (click)="setSort('nationalityId', 'desc')">Descending ID Number</button>
                   </li>
                 </ul>
               </div>
+              
+
             </div>
           </div>
         </div>
