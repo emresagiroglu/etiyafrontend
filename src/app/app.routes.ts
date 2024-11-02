@@ -8,6 +8,7 @@ import { AddressInfoComponent } from './shared/components/address-info/address-i
 import { CustomerAccountComponent } from './shared/components/customer-account/customer-account.component';
 import { SaleSelectionComponent } from './shared/components/sale-selection/sale-selection.component';
 import { CustomerUpdateComponent } from './shared/components/customer-update/customer-update.component';
+import { CustomerInfoComponent } from './shared/components/customer-info/customer-info.component';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'address-info', component: AddressInfoComponent },
   { path: 'sale-selection', component: SaleSelectionComponent },
   { path: 'customer-update', component: CustomerUpdateComponent },
+  {path: 'customer-info/:id', component : CustomerInfoComponent}
 ];
 
 @NgModule({
