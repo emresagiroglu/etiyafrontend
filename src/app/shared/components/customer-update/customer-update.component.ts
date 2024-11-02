@@ -34,6 +34,8 @@ export class CustomerUpdateComponent {
     this.customerUpdateForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      fax: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      homePhone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
     });
   }
 
