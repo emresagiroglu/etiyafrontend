@@ -1,8 +1,8 @@
-import { CustomerCncInfoRequest } from '../models/customer/customerCncInfoRequest';
+import { CustomerCncInfoRequest } from '../../models/customer/customerCncInfoRequest';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CustomerCncInfoResponse } from '../models/customer/customerCncInfoResponse';
+import { CustomerCncInfoResponse } from '../../models/customer/customerCncInfoResponse';
 
 @Injectable({
   providedIn: 'root'
