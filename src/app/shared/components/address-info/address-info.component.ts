@@ -1,3 +1,4 @@
+import { AddressSummary } from './../../models/customer/address/AddressSummary';
 import { AddressRequest } from './../../models/customer/address/AddressRequest';
 import { DistrictRequest } from './../../models/customer/address/DistrictRequest';
 import { CityResponse } from './../../models/customer/address/CityResponse';
@@ -12,6 +13,8 @@ import { RadioButtonComponent } from '../radio-button/radio-button.component';
 import { Observable } from 'rxjs';
 import { NeighbourhoodRequest } from '../../models/customer/address/NeighbourhoodRequest';
 import { AddressResponse } from '../../models/customer/address/AddressResponse';
+import { CustomerIdService } from '../../services/customer-service/customer-id.service';
+import { Route, Router } from '@angular/router';
 
 
 
@@ -35,9 +38,11 @@ export class AddressInfoComponent implements OnInit{
   showExitPopup: boolean = false;
   addresses: AddressResponse[] = []; // Adresleri saklamak için dizi
   addressForm : FormGroup;
-  @Input() currentCustomerId! : number; // buraya state ile id aktarmamız laızm. !!!
+  currentCustomerId! : number; 
+  addressSummary: AddressSummary[] = []
 
-  constructor(private formBuilder : FormBuilder, private addressService: AddressService)
+
+  constructor(private formBuilder : FormBuilder, private addressService: AddressService,private customerIdService : CustomerIdService, private router : Router)
   {
     this.addressForm = this.formBuilder.group({
       city: ['', [Validators.required, Validators.minLength(2)]],
@@ -47,6 +52,7 @@ export class AddressInfoComponent implements OnInit{
       neighbourhood: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.required, Validators.minLength(2)]]
     })
+    this.currentCustomerId = this.customerIdService.customerId;
   }
 
   selectedOption: string = 'all';
@@ -75,6 +81,7 @@ export class AddressInfoComponent implements OnInit{
     this.addressService.getAllAddressByCustomerId(this.currentCustomerId).subscribe({
       next: (response : AddressResponse[]) => {
           this.addresses = response;
+          
       }
     })
   }
@@ -83,6 +90,7 @@ export class AddressInfoComponent implements OnInit{
   closeModal() {
     this.showModal = false;
     this.showExitPopup = false;
+    this.addressForm.reset()
   }
 
   //addresin savelenmesi
@@ -92,6 +100,12 @@ export class AddressInfoComponent implements OnInit{
       this.createAddressInit();
     }
 
+  }
+  nextComponent(){
+    if(this.addresses.length!=0){
+      this.router.navigate(['/customer-update']);
+    }
+    
   }
 
 

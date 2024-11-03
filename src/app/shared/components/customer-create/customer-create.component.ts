@@ -1,3 +1,4 @@
+import { CustomerIdService } from './../../services/customer-service/customer-id.service';
 import { CustomerCreateService } from './../../../shared/services/customer-service/customer-create.service';
 import { routes } from './../../../app.routes';
 import { Router } from '@angular/router';
@@ -35,7 +36,8 @@ export class CustomerCreateComponent {
   selectedOption: string = 'all'; // Varsayılan olarak tüm inputlar açık
   maxDate: string; // Maksimum seçilebilir tarih
 
-  constructor(private fb: FormBuilder, private router: Router, private customerCreateService : CustomerCreateService) {
+  constructor(private fb: FormBuilder, private router: Router,
+     private customerCreateService : CustomerCreateService, private customerIdService : CustomerIdService) {
     const today = new Date();
     this.maxDate = today.toISOString().split('T')[0];
 
@@ -67,7 +69,7 @@ export class CustomerCreateComponent {
   
     this.customerCreateService.createCustomer(customerCreateRequest).subscribe({
       next: (response) => {
-        const currentCustomerId = response.id;
+        this.customerIdService.customerId = response.id;
         this.router.navigate(['/address-info']);
       },
       error: (error) => {
