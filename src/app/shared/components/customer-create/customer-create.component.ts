@@ -67,7 +67,8 @@ export class CustomerCreateComponent {
   
     this.customerCreateService.createCustomer(customerCreateRequest).subscribe({
       next: (response) => {
-        this.router.navigate(['/address-info'])
+        const currentCustomerId = response.id;
+        this.router.navigate(['/address-info']);
       },
       error: (error) => {
         console.log(error);

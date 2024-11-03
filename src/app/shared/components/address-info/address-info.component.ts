@@ -3,7 +3,7 @@ import { DistrictRequest } from './../../models/customer/address/DistrictRequest
 import { CityResponse } from './../../models/customer/address/CityResponse';
 import { AddressService } from './../../services/customer-service/address.service';
 import { CityRequest } from './../../models/customer/address/CityRequest';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PopupComponent } from '../popup/popup.component';
 import { ButtonComponent } from '../button/button.component';
 import { CommonModule } from '@angular/common';
@@ -35,7 +35,7 @@ export class AddressInfoComponent implements OnInit{
   showExitPopup: boolean = false;
   addresses: AddressResponse[] = []; // Adresleri saklamak için dizi
   addressForm : FormGroup;
-
+  @Input() currentCustomerId! : number; // buraya state ile id aktarmamız laızm. !!!
 
   constructor(private formBuilder : FormBuilder, private addressService: AddressService)
   {
@@ -49,60 +49,44 @@ export class AddressInfoComponent implements OnInit{
     })
   }
 
-ngOnInit(): void {
-this.getAllAddresses();
-console.log(this.addresses)
+  selectedOption: string = 'all';
 
-}
-  newAddress = {
-    neighborhood: '',
-    street: '',
-    houseFlat: '',
-    district: '',
-    city: '',
-    description: '',
-  }; // Yeni adres form verisi
+  options = [{ label: 'Primary Address', value: 'all' }];
 
+
+  ngOnInit(): void {
+  this.getAllAddresses();
+  console.log(this.addresses)
+
+  }
+ 
   handleButtonClick() {
     this.showExitPopup = true;
   }
 
+  //popup açılması
   openModal() {
     this.showModal = true;
  
   }
 
+  //sayfa ilk açıldığında ve her veri eklendiğinde tekrardan veri çekecek.
   getAllAddresses(){
-    this.addressService.getAllAddressByCustomerId(100000000002).subscribe({
+    this.addressService.getAllAddressByCustomerId(this.currentCustomerId).subscribe({
       next: (response : AddressResponse[]) => {
           this.addresses = response;
       }
     })
   }
 
+  //popup kapanması
   closeModal() {
     this.showModal = false;
     this.showExitPopup = false;
   }
 
+  //addresin savelenmesi
   saveAddress() {
-    /*// Form verisini adres listesine ekle
-    this.addresses.push({ ...this.newAddress });
-
-    // Formdaki verileri sıfırla
-    this.newAddress = {
-      neighborhood: '',
-      street: '',
-      houseFlat: '',
-      district: '',
-      city: '',
-      description: '',
-    };
-
-    // Popup'ı kapat
-    this.closeModal(); */
-
-
     if(this.addressForm.valid){
       console.log("success")
       this.createAddressInit();
@@ -110,26 +94,25 @@ console.log(this.addresses)
 
   }
 
-  selectedOption: string = 'all';
 
-  options = [{ label: 'Primary Address', value: 'all' }];
-
+  //form valide mi kotnrolü
   onSubmit(form: NgForm) {
     // Tüm alanlar doluysa ve form geçerliyse adresi kaydet
     if (form.valid) {
       this.saveAddress();
-
+      
     }
   }
+
+  // city oluşumunun başlaması için ilk fonksiyon
   createAddressInit(){
-    
     const cityRequest :CityRequest= {
       name : this.addressForm.get('city')?.value
     }
     this.createAddress(cityRequest);
-    
   }
 
+  //sırayla city-district-neighbourhood-address createleme
   createAddress(cityRequest : CityRequest)  {
     this.addressService.createCity(cityRequest).subscribe({
       next: (response) => {
@@ -146,7 +129,7 @@ console.log(this.addresses)
             this.addressService.createNeighbourhood(neighbourhoodRequest).subscribe({
               next: (response) => {
                 const addressRequest : AddressRequest = {
-                  customerId:100000000002,
+                  customerId:this.currentCustomerId,
                   neighbourhoodId: response.id,
                   addressName:'-',
                   addressDesc:this.addressForm.get('description')?.value,
@@ -157,6 +140,7 @@ console.log(this.addresses)
                   next:(response) => {
                     console.log(response)
                     this.closeModal()
+                    this.getAllAddresses()
                   }
                 })
               }
@@ -168,5 +152,6 @@ console.log(this.addresses)
       }
     })
   }
+  
 
 }
