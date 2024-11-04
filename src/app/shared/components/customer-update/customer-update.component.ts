@@ -18,7 +18,6 @@ import { CustomerUpdateRequest } from '../../models/customer/customerUpdateReque
 import { CustomerUpdateResponse } from '../../models/customer/customerUpdateResponse';
 import { CustomerIdService } from '../../services/customer-service/customer-id.service';
 import { CustomerCncService } from '../../services/customer-service/customer-cnc.service';
-import { Router } from '@angular/router';
 
 
 @Component({
