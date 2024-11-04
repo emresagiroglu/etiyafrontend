@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button/radio-button.component';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address-info',
@@ -20,6 +21,9 @@ import { NgForm } from '@angular/forms';
   styleUrl: './address-info.component.scss',
 })
 export class AddressInfoComponent {
+  constructor(
+    private router: Router,
+  ) {}
   showModal: boolean = false;
   showExitPopup: boolean = false;
   addresses: any[] = []; // Adresleri saklamak için dizi
@@ -73,5 +77,8 @@ export class AddressInfoComponent {
     if (form.valid) {
       this.saveAddress();
     }
+  }
+  goToSearch() {
+    this.router.navigate(['/customer-search']);
   }
 }
