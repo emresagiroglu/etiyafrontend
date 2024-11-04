@@ -6,7 +6,7 @@ import { CustomerTableComponent } from '../customer-table/customer-table.compone
 import { PopupComponent } from '../popup/popup.component';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { CustomerSearchService } from '../../services/customer-search.service';
+import { CustomerSearchService } from '../../services/customer-service/customer-search.service';
 import { CustomerSearchResponse } from '../../models/customer/customerSearchResponse';
 import { CustomerSearchRequest } from '../../models/customer/customerSearchRequest';
 import { Router } from '@angular/router';

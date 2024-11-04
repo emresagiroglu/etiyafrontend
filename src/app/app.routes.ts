@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -9,7 +10,7 @@ import { CustomerAccountComponent } from './shared/components/customer-account/c
 import { SaleSelectionComponent } from './shared/components/sale-selection/sale-selection.component';
 import { CustomerUpdateComponent } from './shared/components/customer-update/customer-update.component';
 import { CustomerInfoComponent } from './shared/components/customer-info/customer-info.component';
-
+import {CustomerCreatePageComponent} from './shared/pages/customer-create-page/customer-create-page.component'
 
 export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -20,7 +21,8 @@ export const routes: Routes = [
   { path: 'address-info', component: AddressInfoComponent },
   { path: 'sale-selection', component: SaleSelectionComponent },
   { path: 'customer-update', component: CustomerUpdateComponent },
-  {path: 'customer-info/:id', component : CustomerInfoComponent}
+  {path: 'customer-info/:id', component : CustomerInfoComponent},
+  {path: 'customer-create-page', component: CustomerCreatePageComponent}
 ];
 
 @NgModule({

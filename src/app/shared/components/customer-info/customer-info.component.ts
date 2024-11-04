@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CustomerCncinfoService } from '../../services/customer-cncinfo.service';
+import { CustomerCncinfoService } from '../../services/customer-service/customer-cncinfo.service';
 import { CustomerCncInfoResponse } from '../../models/customer/customerCncInfoResponse';
 import { PopupComponent } from '../popup/popup.component';
 import { ButtonComponent } from '../button/button.component';

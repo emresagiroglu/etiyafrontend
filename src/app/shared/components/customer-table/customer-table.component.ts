@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from '../../models/Customer';
 import { CommonModule } from '@angular/common';
-import { CustomerSearchService } from '../../services/customer-search.service';
+import { CustomerSearchService } from '../../services/customer-service/customer-search.service';
 import { CustomerListResponse } from '../../models/customer/customerListResponse';
 import { CustomerSearchResponse } from '../../models/customer/customerSearchResponse';
 
