@@ -1,3 +1,5 @@
+
+import { CustomerCncRequest } from './../../models/customer/customerCncRequest';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -14,6 +16,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerUpdateService } from '../../services/customer-update.service';
 import { CustomerUpdateRequest } from '../../models/customer/customerUpdateRequest';
 import { CustomerUpdateResponse } from '../../models/customer/customerUpdateResponse';
+import { CustomerIdService } from '../../services/customer-service/customer-id.service';
+import { CustomerCncService } from '../../services/customer-service/customer-cnc.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-customer-create',
@@ -29,18 +35,19 @@ import { CustomerUpdateResponse } from '../../models/customer/customerUpdateResp
   templateUrl: './customer-update.component.html',
   styleUrls: ['./customer-update.component.scss'], 
 })
-export class CustomerUpdateComponent implements OnInit{
+
+export class CustomerUpdateComponent implements OnInit {
   customerUpdateForm: FormGroup;
+  selectedGender: string = ''; 
+  selectedOption: string = 'all';
+  currentCustomerId! : number;
   customerId: number | null = null;  // Müşteri kimliğini tutmak için bir değişken
   customer: CustomerUpdateResponse | null = null;  // Güncellenmiş müşteri bilgileri
-
-  constructor(
-    private fb: FormBuilder , 
-    private router: Router ,
-    private customerUpdateService : CustomerUpdateService,
-    private route: ActivatedRoute ) {
-   
-      this.customerUpdateForm = this.fb.group({
+        
+        
+  constructor(private fb: FormBuilder, private customerIdService : CustomerIdService, 
+    private customerCncService : CustomerCncService, private router : Router,private customerUpdateService : CustomerUpdateService,private route: ActivatedRoute) {
+    this.customerUpdateForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       fax: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
@@ -51,13 +58,9 @@ export class CustomerUpdateComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.customerId = +params.get('id')!; 
-      // Burada müşteri bilgilerini yüklemek için bir API çağrısı yapabilirsiniz
-      // this.loadCustomerData(this.customerId);
-    });
+    this.currentCustomerId = this.customerIdService.customerId;
   }
-
+ 
   handleButtonClick() {
     if (this.customerUpdateForm.invalid) {
       this.customerUpdateForm.markAllAsTouched();
@@ -75,17 +78,23 @@ export class CustomerUpdateComponent implements OnInit{
       homePhone: this.customerUpdateForm.value.homePhone,
     };
 
-    // Call the updateCustomer method from the service
-    this.customerUpdateService.updateCustomer(customerUpdateRequest).subscribe({
-      next: (response: CustomerUpdateResponse) => {
-        console.log('Customer updated successfully:', response);
-        this.router.navigate(['/success']); // Change '/success' to your desired route
-      },
-      error: (err) => {
-        console.error('Error updating customer:', err);
-        alert('An error occurred while updating the customer. Please try again.');
+
+    const customerCncRequest: CustomerCncRequest = {
+      customerId : this.currentCustomerId,
+      contactName : "",
+      email: this.customerUpdateForm.get('email')?.value,
+      homePhone: this.customerUpdateForm.get('homePhone')?.value,
+      mobilePhone: this.customerUpdateForm.get('phone')?.value,
+      fax: this.customerUpdateForm.get('fax')?.value,
+    }
+    this.customerCncService.createCncInfo(customerCncRequest).subscribe({
+      next: (response) => {
+        if(response.customerId != null) {
+          this.router.navigate(['/customer-search']);
+        }
       }
-    });
+    })
+
   }
 
   showModal: boolean = false;

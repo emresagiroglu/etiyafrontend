@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CustomerListResponse } from '../models/customer/customerListResponse';
-import { CustomerSearchResponse } from '../models/customer/customerSearchResponse';
-import { CustomerSearchRequest } from '../models/customer/customerSearchRequest';
+import { CustomerListResponse } from '../../models/customer/customerListResponse';
+import { CustomerSearchResponse } from '../../models/customer/customerSearchResponse';
+import { CustomerSearchRequest } from '../../models/customer/customerSearchRequest';
 
 @Injectable({
   providedIn: 'root'
