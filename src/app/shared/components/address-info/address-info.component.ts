@@ -10,6 +10,7 @@ import { ButtonComponent } from '../button/button.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, FormGroup, Validators,ReactiveFormsModule, NgForm } from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button/radio-button.component';
+import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { NeighbourhoodRequest } from '../../models/customer/address/NeighbourhoodRequest';
 import { AddressResponse } from '../../models/customer/address/AddressResponse';
@@ -33,6 +34,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './address-info.component.html',
   styleUrl: './address-info.component.scss',
 })
+
 export class AddressInfoComponent implements OnInit{
   showModal: boolean = false;
   showExitPopup: boolean = false;
@@ -118,6 +120,11 @@ export class AddressInfoComponent implements OnInit{
     }
   }
 
+  goToSearch() {
+    this.router.navigate(['/customer-search']);
+  }
+
+
   // city oluşumunun başlaması için ilk fonksiyon
   createAddressInit(){
     const cityRequest :CityRequest= {
@@ -167,5 +174,4 @@ export class AddressInfoComponent implements OnInit{
     })
   }
   
-
 }
