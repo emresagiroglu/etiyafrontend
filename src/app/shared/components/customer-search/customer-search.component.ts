@@ -52,10 +52,10 @@ export class CustomerSearchComponent implements OnInit{
 
   buildForm(){
     this.searchForm = this.formBuilder.group({
-      nationalityId: ['', [this.numericValidator()]],
-      id: ['', [this.numericValidator()]],
-      accountNumber: ['', [this.numericValidator()]],
-      mobilePhone: ['', [this.numericValidator()]],
+      nationalityId: [''],
+      id: [''],
+      accountNumber: [''],
+      mobilePhone: [''],
       firstName: ['', [this.onlyTextValidator()]],
       middleName: ['', [this.onlyTextValidator()]],
       lastName: ['', [this.onlyTextValidator()]],
@@ -99,13 +99,6 @@ export class CustomerSearchComponent implements OnInit{
       return isTextOnly ? null : { onlyText: true };
     };
   } 
-
-  numericValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const isNumeric = /^[0-9]*$/.test(control.value);
-      return isNumeric ? null : { onlyNumeric: true };
-    };
-  }
 
   setActiveTab(index: number) {
     this.activeTab = index;
